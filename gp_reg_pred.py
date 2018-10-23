@@ -72,3 +72,15 @@ eta_2 = 1000
 def Kernel_d(x_1, x_2):
     k = Kernel_b(x_1, x_2) + eta_2*(1 + x_1*x_2)         
     return k
+
+f = open("maunaloa_clean.txt")
+maunaloa = np.loadtxt(f, delimiter=" ")
+year = maunaloa[:,0]
+co2 = maunaloa[:,1]
+year_new = np.linspace(2000, 2040, 1000)
+mu_1, var_1 = GP(year, co2, Kernel_b, 1, year_new)
+mu_2, var_2 = GP(year, co2, Kernel_d, 1, year_new)
+plt.plot(year,co2)
+plt.plot(year_new, mu_2)
+plt.fill_between(year_new, mu_2-var_2, mu_2+var_2, alpha=0.5)
+plt.axvline(x = 2025, linewidth=4, color='r')
