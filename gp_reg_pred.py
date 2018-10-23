@@ -58,6 +58,7 @@ def GP(X, y, Kernel, sigma_2, x_new):
     
     return np.array(mu_new), np.array(var_new)
 
+# The following example kernels are used in question 4 of hw2 Stat547P
 tau_2 = 20
 nu_2 = 200
 ell = 1
